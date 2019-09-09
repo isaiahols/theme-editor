@@ -7,14 +7,14 @@ export default (props) => {
       <div style={{ height: '100%', width: '30%', background: color }} onClick={()=>_toggleEditColorCard(title)}></div>
       <div style={{ marginLeft: 15, display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
         <h2>Title: {title}</h2>
-        {editKey === title?(
+        {/* {editKey === title?(
           <input 
             onChange={(e)=> _updateEditedColor(e.target.value)} 
             value={editedColor||color} 
           />
-        ):(
+        ):( */}
           <h2>Color: {color}</h2>
-        )}
+        {/* )} */}
       </div>
     </div>
   )

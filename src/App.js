@@ -25,7 +25,7 @@ const styles = {
   container: {
     height: '100vh',
     width: '100vw',
-    backgroundColor: 'purple',
+    backgroundColor: 'darkGreen',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'spaceBetween',

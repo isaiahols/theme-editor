@@ -57,14 +57,14 @@ export const editColor = (themeIndex, colorTitle, color) => ({
 
 export const previewThemes = () => {
   return (dispatch, getState) => {
-    const sessionState = getState().session;
-    const server = sessionState.server;
-    const serverType = sessionState.serverType;
-    const serverInfo = server[serverType];
-    const sessionId = getSessionId(getState);
-    if (!sessionId || sessionId === "") return;
+    // const sessionState = getState().session;
+    // const server = sessionState.server;
+    // const serverType = sessionState.serverType;
+    // const serverInfo = server[serverType];
+    // const sessionId = getSessionId(getState);
+    // if (!sessionId || sessionId === "") return;
 
-    const { themes } = getState().themeEditor
+    // const { themes } = getState().themeEditor
     dispatch({ type: PREVIEW_THEMES_REQUEST });
     // ipcRenderer.send('appiumx-client-preview-themes', {
     //   host: serverInfo.hostname, port: serverInfo.port, sessionId, themes

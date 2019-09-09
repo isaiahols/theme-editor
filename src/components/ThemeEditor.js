@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from "react-redux";
-import ColorCard from './ColorCard'
+import ColorCard from './ColorCard';
 import ThemeSelector from './ThemeSelector';
+import ThemeColorDisplay from './ThemeColorDisplay';
+import ThemeEditorPanel from './ThemeEditorPanel';
 
 import { getAllThemes, editColor, previewThemes } from "./../redux/actions/ThemeEditor";
-// import { getAllThemes, editColor, previewThemes } from "./../../../actions/ThemeEditor";
+// import { getAllThemes, editColor, previewThemes } from "./../../../actions/ThemeEditor"; //AppiumX Desktop path
 
 
 class ThemeEditor extends Component {
@@ -52,47 +54,26 @@ class ThemeEditor extends Component {
     this.props.previewThemes()
   }
 
-  colorCardList(theme, themeIndex) {
-    const listDisplay = [];
-    console.log('THEME', theme)
-    for (let color in theme) {
-      const newCard = <ColorCard
-        color={theme[color]}
-        title={color}
-        themeIndex={themeIndex}
-        editKey={this.state.editKey}
-        editedColor={this.state.editedColor}
-        _toggleEditColorCard={this._toggleEditColorCard}
-        _updateEditedColor={this._updateEditedColor}
-      />
-
-      listDisplay.push(newCard)
-    }
-    return listDisplay
-  }
-
-  themeList(themes) {
-    // return themes.map((theme, index) => this.colorCardList(theme, index))
-  }
-
+  
+  
   render() {
     const { themes } = this.props
     return (
-      <div style={{ height: '100%', width: '100%', border: '1px solid black'}}>
-        <ThemeSelector themes={this.props.themes} />
-        <h2>Welcome to the color editor page</h2>
-        {this.state.viewButtonVisible && <button type="button" onClick={() => this.updateTheme()} >Save Changes</button>}
-        <button type="button" onClick={() => this.previewTheme()} >Preview</button>
-        {this.themeList(themes)}
+      <div style={styles.themesContainer}>
+        <div style={styles.themeSelectorDisplayContainer}>
+          <ThemeSelector themes={themes} />
+          <ThemeColorDisplay />
+        </div>
+        <ThemeEditorPanel />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ themeSelector}) => {
   return ({
-    themes: state.themes,
-    activeThemeRequest: state.activeThemeRequest,
+    themes: themeSelector.themes,
+    activeThemeRequest: themeSelector.activeThemeRequest,
   })
 }
 
@@ -103,3 +84,19 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemeEditor)
+
+const styles = {
+  themesContainer: { 
+    height: '100%', 
+    width: '100%', 
+    border: '1px solid black',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'spaceBetween',
+    backgroundColor: 'cyan',
+  },
+  themeSelectorDisplayContainer: {
+    width: '80%',
+    backgroundColor: 'azure',
+  },
+}

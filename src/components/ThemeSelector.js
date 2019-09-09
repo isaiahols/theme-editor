@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 // import { selectTheme } from './../../../actions/ThemeEditor';
 
 const ThemeSettings = (props) => {
-  console.log('this is props',props)
   const mappedThemes = props.themes.map((theme, index) => {
     return (<div style={styles.themeTitle} key={index}>
-      <h3>{theme.id}</h3>
-      {/* <h3>{theme.display_key}</h3> */}
+      <h3 style={styles.themeTitleText} >{theme.id}</h3>
     </div>)
   })
 
@@ -32,18 +30,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(ThemeSettings);
 
 const styles = {
   themeContainer: {
-    width: '80%',
-    height: '10vh',
+    width: '100%',
+    height: '20vh',
     display: "flex",
-    flexDirection: 'row',
+    // flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'blue',
   },
   themeTitle: {
-    width: 50,
-    width: 50,
-    // borderRadius: 50, 
+    margin: 10,
+    width: 100,
+    width: 100,
     backgroundColor: 'green',
-  }
+  },
+  themeTitleText: {
+    fontSize: 25,
+  },
 }
